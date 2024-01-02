@@ -50,11 +50,11 @@ export default function Textform(props) {
                 <h1>{props.enter}</h1>
                 <textarea className="form-control my-3" id="myBox" rows="3" value={name} onChange={handleChange} style={{backgroundColor: props.mode==='dark'?'#282a2d':'white', color: props.mode==='light'?'black':'white'}}></textarea>
             </div>
-            <button type="button" class="btn btn-primary mx-3" onClick={changeUpCase}>Upper Case</button>
-            <button type="button" class="btn btn-primary mx-3" onClick={changeLCase}>Lower Case</button>
-            <button type="button" class="btn btn-primary mx-3" onClick={clearCase}>Clear Text</button>
-            <button type="button" class="btn btn-primary mx-3" onClick={copyText}>Copy Text</button>
-            <button type="button" class="btn btn-primary mx-3" onClick={remSpace}>Remove Extra Spaces</button>
+            <button type="button" class="btn btn-primary my-3 mx-3" onClick={changeUpCase}>Upper Case</button>
+            <button type="button" class="btn btn-primary my-3 mx-3" onClick={changeLCase}>Lower Case</button>
+            <button type="button" class="btn btn-primary my-3 mx-3" onClick={clearCase}>Clear Text</button>
+            <button type="button" class="btn btn-primary my-3 mx-3" onClick={copyText}>Copy Text</button>
+            <button type="button" class="btn btn-primary my-3 mx-3" onClick={remSpace}>Remove Extra Spaces</button>
             <div className="container my-4">
                 <h2>Typing Speed</h2>
                 <p>Your Speed - {typingSpeed(name)} WPM</p>
