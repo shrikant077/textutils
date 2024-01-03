@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function Textform(props) {
-    const [name, setName] = useState('Edit Text Here');
+    const [name, setName] = useState('');
     const handleChange = (e) => {
         setName(e.target.value);
     }
@@ -22,20 +22,21 @@ export default function Textform(props) {
         setName('');
         props.showAlert("Text Cleared","success");
     }
-    function typingSpeed(name){
-        let startTime = new Date().getTime();      
-        let endTime = new Date().getTime();
+    // function typingSpeed(name){
+    //     let startTime = new Date().getTime();      
+    //     let endTime = new Date().getTime();
         
-        let elapsedTimeInSeconds = (endTime - startTime) / 1000;
+    //     let elapsedTimeInSeconds = (endTime - startTime) / 1000;
         
-        let wordsPerMinute = (name.split(" ").length / elapsedTimeInSeconds) * 60;
+    //     let wordsPerMinute = (name.split(" ").length / elapsedTimeInSeconds) * 60;
         
-        return wordsPerMinute;
-    }
+    //     return wordsPerMinute;
+    // }
     const copyText = () => {
         var text=document.getElementById("myBox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges();
         props.showAlert("Text Copied to Clipboard","success");
     }
     const remSpace = () => {
@@ -48,20 +49,20 @@ export default function Textform(props) {
         <div style={{color: props.mode==='light'?'black':'white'}}>            
             <div className="mb-3" >
                 <h1>{props.enter}</h1>
-                <textarea className="form-control my-3" id="myBox" rows="3" value={name} onChange={handleChange} style={{backgroundColor: props.mode==='dark'?'#282a2d':'white', color: props.mode==='light'?'black':'white'}}></textarea>
+                <textarea className="form-control my-3" id="myBox" rows="3" value={name} placeholder='Enter Your Text Here' onChange={handleChange} style={{backgroundColor: props.mode==='dark'?'#282a2d':'white', color: props.mode==='light'?'black':'white'}}></textarea>
             </div>
-            <button type="button" class="btn btn-primary my-3 mx-3" onClick={changeUpCase}>Upper Case</button>
-            <button type="button" class="btn btn-primary my-3 mx-3" onClick={changeLCase}>Lower Case</button>
-            <button type="button" class="btn btn-primary my-3 mx-3" onClick={clearCase}>Clear Text</button>
-            <button type="button" class="btn btn-primary my-3 mx-3" onClick={copyText}>Copy Text</button>
-            <button type="button" class="btn btn-primary my-3 mx-3" onClick={remSpace}>Remove Extra Spaces</button>
-            <div className="container my-4">
+            <button disabled={name.length === 0} type="button" class="btn btn-primary my-3 mx-3" onClick={changeUpCase}>Upper Case</button>
+            <button disabled={name.length === 0} type="button" class="btn btn-primary my-3 mx-3" onClick={changeLCase}>Lower Case</button>
+            <button disabled={name.length === 0} type="button" class="btn btn-primary my-3 mx-3" onClick={clearCase}>Clear Text</button>
+            <button disabled={name.length === 0} type="button" class="btn btn-primary my-3 mx-3" onClick={copyText}>Copy Text</button>
+            <button disabled={name.length === 0} type="button" class="btn btn-primary my-3 mx-3" onClick={remSpace}>Remove Extra Spaces</button>
+            {/* <div className="container my-4">
                 <h2>Typing Speed</h2>
                 <p>Your Speed - {typingSpeed(name)} WPM</p>
-            </div>
+            </div> */}
             <div className="container my-4">
                 <h2>Text Count</h2>
-                <p>Words - {(name.split(" ")).length} && Characters - {name.length}</p>
+                <p>Words - {(name.split(" ")).filter((e)=>{return e.length!==0}).length} && Characters - {name.length}</p>
                 <h2>Preview</h2>
                 <p>{name.length>0?name:"Enter Text Above to Preview"}</p>
             </div>
