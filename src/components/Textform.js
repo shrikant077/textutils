@@ -62,7 +62,7 @@ export default function Textform(props) {
             </div> */}
             <div className="container my-4">
                 <h2>Text Count</h2>
-                <p>Words - {(name.split(" ")).filter((e)=>{return e.length!==0}).length} && Characters - {name.length}</p>
+                <p>Words - {(name.split(/\s+/)).filter((e)=>{return e.length!==0}).length} && Characters - {name.length}</p>
                 <h2>Preview</h2>
                 <p>{name.length>0?name:"Enter Text Above to Preview"}</p>
             </div>
